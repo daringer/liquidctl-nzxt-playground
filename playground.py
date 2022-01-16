@@ -59,14 +59,14 @@ def write_slot(slot, content=None):
 
     # write "data" to slot
     # * slot is here twice, really?
-    # * the next two bytes seem to be the data to be set
+    # * the next two bytes seem to be the data to be set (or moreover identifying)
     # * the final 3 bytes are always the same ?
 
     d._write([0x32, 0x01, slot, slot, 0b11000000 , 0b00000110, 0x90, 0x01, 0x01])
     d._read()
 
     # write buffer to slot [slot]
-    # * CAM has ~2sec after this call, don't see how know this duration
+    # * CAM has ~2sec after this call, guess this will be based on the gif transfer duration?
     d._write([0x36, 0x01, slot])
     d._read()
     sleep(2)
